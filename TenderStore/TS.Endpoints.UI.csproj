@@ -10,8 +10,19 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.7" NoWarn="NU1605" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="7.0.7" NoWarn="NU1605" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.13">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.Identity.Web" Version="1.16.0" />
     <PackageReference Include="Microsoft.Identity.Web.UI" Version="1.16.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TS.Domain.ApplicationServices\TS.Domain.ApplicationServices.csproj" />
+    <ProjectReference Include="..\TS.Domain.Core\TS.Domain.Core.csproj" />
+    <ProjectReference Include="..\TS.Domain.Services\TS.Domain.Services.csproj" />
+    <ProjectReference Include="..\TS.Infrastructure.Database.SqlServer\TS.Infrastructure.Database.SqlServer.csproj" />
   </ItemGroup>
 
 </Project>
