@@ -13,6 +13,6 @@ namespace TS.Domain.Core.Entities
         public string Description { get; set; }
 
         public ICollection<ProductCategory> ProductCategories { get; set; }
-        public ICollection<CustomAttributeTemplate> CustomAttributes { get; set; }
+        public ICollection<CustomAttribute> CustomAttributes { get; set; }
     }
 }

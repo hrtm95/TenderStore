@@ -1,10 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TS.Domain.Core.Entities;
 
 namespace TS.Infrastructure.Database.SqlServer.Configuration
@@ -14,6 +9,12 @@ namespace TS.Infrastructure.Database.SqlServer.Configuration
         public void Configure(EntityTypeBuilder<User> builder)
         {
             builder.HasKey(x => x.Id);
+            builder.HasOne(e => e.Picture)
+           .WithMany(e => e.Users)
+           .HasForeignKey(e => e.PictureId).OnDelete(DeleteBehavior.Restrict);
+            builder.HasOne(e => e.Address)
+             .WithMany(e => e.Users)
+             .HasForeignKey(e => e.AddressId).OnDelete(DeleteBehavior.Restrict);
 
             builder.ToTable("User");
         }

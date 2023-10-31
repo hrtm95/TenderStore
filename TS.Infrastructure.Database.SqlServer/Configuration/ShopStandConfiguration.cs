@@ -14,8 +14,11 @@ namespace TS.Infrastructure.Database.SqlServer.Configuration
         public void Configure(EntityTypeBuilder<ShopStand> builder)
         {
             builder.HasKey(x => x.Id);
+            builder.HasOne(e => e.Picture)
+                .WithMany(e => e.ShopStands)
+                .HasForeignKey(e => e.PictureId).OnDelete(DeleteBehavior.Restrict);
 
-            builder.ToTable("Booth");
+            builder.ToTable("ShopStand");
         }
     }
 }
