@@ -6,14 +6,15 @@ using System.Threading.Tasks;
 
 namespace TS.Domain.Core.Entities
 {
-    public class Picture
+    public class Address
     {
         public int Id { get; set; }
-        public string Url { get; set; }
-
-        public ICollection<ShopStand> ShopStands { get; set; }
+        public string City { get; set; }
+        public string Street { get; set; }
+        public string PostalCode { get; set; }
+        public string MoreDescription { get; set; }
+        
         public ICollection<User> Users { get; set; }
-        public ICollection<Product> Products { get; set; }
         public ICollection<Seller> Sellers { get; set; }
     }
 }

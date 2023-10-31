@@ -11,5 +11,7 @@ namespace TS.Domain.Core.Entities
         public int Id { get; set; }
         public double FeePercentage { get; set; }
         public int ProductCount { get; set; }
+        public ICollection<Seller> Seller { get; set; }
+
     }
 }

@@ -14,9 +14,15 @@ namespace TS.Domain.Core.Entities
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public string confim_Password { get; set; }
+        public int PictureId { get; set; }
+        public Picture? Picture { get; set; }
+
+        public int AddressId { get; set; }
+        public Address? Address { get; set; }
 
         public ICollection<Comment> Comments { get; set; }
         public ICollection<SoldGoods> SoldGoods { get; set; }
+        public ICollection<AuctionInformation> AuctionInformation { get; set; }
+        public ICollection<Order> Order { get; set; }
     }
 }

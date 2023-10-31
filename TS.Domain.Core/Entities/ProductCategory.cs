@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace TS.Domain.Core.Entities
 {
-    public class FixedPrice
+    public class ProductCategory
     {
         public int Id { get; set; }
-        public double Price { get; set; }
-        public int Qty { get; set; }
+
+        public int CategoryId { get; set; }
+        public Category Category { get; set; }
 
         public int ProductId { get; set; }
         public Product Product { get; set; }

@@ -12,11 +12,12 @@ namespace TS.Domain.Core.Entities
         public string Name { get; set; }
         public string Description { get; set; }
 
+        public int sellerId { get; set; }
+        public Seller? seller { get; set; }
 
-        public int sellerId { get; set; } 
-        public Seller? seller { get; set; }  
+        public int PictureId { get; set; }
+        public Picture? Picture { get; set; }
 
         public ICollection<Product> Products { get; set; }
-        public ICollection<Picture> Pictures { get; set; }
     }
 }

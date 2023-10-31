@@ -10,6 +10,7 @@ namespace TS.Domain.Core.Entities
     {
         public int Id { get; set; }
         public string Title { get; set; }
+        public int Status { get; set; }
 
         public int ProductId { get; set; }
         public Product Product { get; set; }
