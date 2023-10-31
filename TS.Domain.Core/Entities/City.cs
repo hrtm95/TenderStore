@@ -11,7 +11,7 @@
 
         #region Navigation properties
 
-        public List<Address>? Customers { get; set; }
+        public List<Address>? Addresses { get; set; }
 
         #endregion Navigation properties
 

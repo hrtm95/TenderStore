@@ -8,13 +8,19 @@ namespace TS.Domain.Core.Entities
 {
     public class Address
     {
+        #region Properties
         public int Id { get; set; }
-        public string City { get; set; }
+        public int? CityId { get; set; }
         public string Street { get; set; }
         public string PostalCode { get; set; }
         public string MoreDescription { get; set; }
-        
+        #endregion Properties
+
+        #region Navigation properties
         public ICollection<User> Users { get; set; }
         public ICollection<Seller> Sellers { get; set; }
+        public City? City { get; set; }
+        #endregion Navigation properties
+
     }
 }

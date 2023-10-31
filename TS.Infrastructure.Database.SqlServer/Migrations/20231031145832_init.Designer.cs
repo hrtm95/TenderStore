@@ -12,7 +12,7 @@ using TS.Infrastructure.Database.SqlServer.Common;
 namespace TS.Infrastructure.Database.SqlServer.Migrations
 {
     [DbContext(typeof(TSDbcontext))]
-    [Migration("20231031124134_init")]
+    [Migration("20231031145832_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -33,9 +33,8 @@ namespace TS.Infrastructure.Database.SqlServer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("CityId")
+                        .HasColumnType("int");
 
                     b.Property<string>("MoreDescription")
                         .IsRequired()
@@ -50,6 +49,8 @@ namespace TS.Infrastructure.Database.SqlServer.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CityId");
 
                     b.ToTable("Address", (string)null);
                 });
@@ -126,6 +127,179 @@ namespace TS.Infrastructure.Database.SqlServer.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Category", (string)null);
+                });
+
+            modelBuilder.Entity("TS.Domain.Core.Entities.City", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Cities", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "آذربایجان شرقی"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "آذربایجان غربی"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "اردبیل"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "اصفهان"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "البرز"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "ایلام"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Name = "بوشهر"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Name = "تهران"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Name = "چهارمحال و بختیاری"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Name = "خراسان جنوبی"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Name = "خراسان رضوی"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Name = "خراسان شمالی"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Name = "خوزستان"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Name = "زنجان"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Name = "سمنان"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Name = "سیستان و بلوچستان"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Name = "فارس"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            Name = "قزوین"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            Name = "قم"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            Name = "کردستان"
+                        },
+                        new
+                        {
+                            Id = 21,
+                            Name = "کرمان"
+                        },
+                        new
+                        {
+                            Id = 22,
+                            Name = "کرمانشاه"
+                        },
+                        new
+                        {
+                            Id = 23,
+                            Name = "کهگیلویه و بویراحمد"
+                        },
+                        new
+                        {
+                            Id = 24,
+                            Name = "گلستان"
+                        },
+                        new
+                        {
+                            Id = 25,
+                            Name = "گیلان"
+                        },
+                        new
+                        {
+                            Id = 26,
+                            Name = "لرستان"
+                        },
+                        new
+                        {
+                            Id = 27,
+                            Name = "مازندران"
+                        },
+                        new
+                        {
+                            Id = 28,
+                            Name = "مرکزی"
+                        },
+                        new
+                        {
+                            Id = 29,
+                            Name = "هرمزگان"
+                        },
+                        new
+                        {
+                            Id = 30,
+                            Name = "همدان"
+                        },
+                        new
+                        {
+                            Id = 31,
+                            Name = "یزد"
+                        });
                 });
 
             modelBuilder.Entity("TS.Domain.Core.Entities.Comment", b =>
@@ -557,6 +731,16 @@ namespace TS.Infrastructure.Database.SqlServer.Migrations
                     b.ToTable("User", (string)null);
                 });
 
+            modelBuilder.Entity("TS.Domain.Core.Entities.Address", b =>
+                {
+                    b.HasOne("TS.Domain.Core.Entities.City", "City")
+                        .WithMany("Addresses")
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("City");
+                });
+
             modelBuilder.Entity("TS.Domain.Core.Entities.AuctionInformation", b =>
                 {
                     b.HasOne("TS.Domain.Core.Entities.AuctionPrice", "AuctionPrice")
@@ -851,6 +1035,11 @@ namespace TS.Infrastructure.Database.SqlServer.Migrations
                     b.Navigation("CustomAttributes");
 
                     b.Navigation("ProductCategories");
+                });
+
+            modelBuilder.Entity("TS.Domain.Core.Entities.City", b =>
+                {
+                    b.Navigation("Addresses");
                 });
 
             modelBuilder.Entity("TS.Domain.Core.Entities.CustomAttribute", b =>

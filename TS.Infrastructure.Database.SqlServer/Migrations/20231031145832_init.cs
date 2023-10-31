@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace TS.Infrastructure.Database.SqlServer.Migrations
 {
     /// <inheritdoc />
@@ -11,22 +13,6 @@ namespace TS.Infrastructure.Database.SqlServer.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "Address",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    City = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Street = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PostalCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    MoreDescription = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Address", x => x.Id);
-                });
-
             migrationBuilder.CreateTable(
                 name: "Category",
                 columns: table => new
@@ -39,6 +25,19 @@ namespace TS.Infrastructure.Database.SqlServer.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Category", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Cities",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Cities", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -97,6 +96,28 @@ namespace TS.Infrastructure.Database.SqlServer.Migrations
                         name: "FK_CustomAttribute_Category_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Category",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Address",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CityId = table.Column<int>(type: "int", nullable: true),
+                    Street = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PostalCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MoreDescription = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Address", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Address_Cities_CityId",
+                        column: x => x.CityId,
+                        principalTable: "Cities",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -493,6 +514,49 @@ namespace TS.Infrastructure.Database.SqlServer.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.InsertData(
+                table: "Cities",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "آذربایجان شرقی" },
+                    { 2, "آذربایجان غربی" },
+                    { 3, "اردبیل" },
+                    { 4, "اصفهان" },
+                    { 5, "البرز" },
+                    { 6, "ایلام" },
+                    { 7, "بوشهر" },
+                    { 8, "تهران" },
+                    { 9, "چهارمحال و بختیاری" },
+                    { 10, "خراسان جنوبی" },
+                    { 11, "خراسان رضوی" },
+                    { 12, "خراسان شمالی" },
+                    { 13, "خوزستان" },
+                    { 14, "زنجان" },
+                    { 15, "سمنان" },
+                    { 16, "سیستان و بلوچستان" },
+                    { 17, "فارس" },
+                    { 18, "قزوین" },
+                    { 19, "قم" },
+                    { 20, "کردستان" },
+                    { 21, "کرمان" },
+                    { 22, "کرمانشاه" },
+                    { 23, "کهگیلویه و بویراحمد" },
+                    { 24, "گلستان" },
+                    { 25, "گیلان" },
+                    { 26, "لرستان" },
+                    { 27, "مازندران" },
+                    { 28, "مرکزی" },
+                    { 29, "هرمزگان" },
+                    { 30, "همدان" },
+                    { 31, "یزد" }
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Address_CityId",
+                table: "Address",
+                column: "CityId");
+
             migrationBuilder.CreateIndex(
                 name: "IX_AuctionInformation_AuctionPriceId",
                 table: "AuctionInformation",
@@ -707,6 +771,9 @@ namespace TS.Infrastructure.Database.SqlServer.Migrations
 
             migrationBuilder.DropTable(
                 name: "Picture");
+
+            migrationBuilder.DropTable(
+                name: "Cities");
         }
     }
 }
