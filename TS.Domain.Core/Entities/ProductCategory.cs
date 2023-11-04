@@ -17,6 +17,6 @@ namespace TS.Domain.Core.Entities
         public Category Category { get; set; }
         public int ProductId { get; set; }
         public Product Product { get; set; }
-        #region Properties
+        #endregion Navigation properties
     }
 }
