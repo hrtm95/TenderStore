@@ -9,24 +9,19 @@ namespace TS.Domain.Core.Entities
 {
     public class Product
     {
+        #region Properties
         public int Id { get; set; }
         private SellingTypeEnum sellingType { get; set; }
-
-
         public int Status { get; set; }
+        #endregion Properties
 
+        #region Navigation properties
         public int SellerId { get; set; }
         public Seller Seller { get; set; }
-
         public int PictureId { get; set; }
         public Picture? Picture { get; set; }
-
-
-
         public ICollection<FixedPrice> FixedPrice { get; set; }
-
         public ICollection<ProductCategory> ProductCategories { get; set; }
-
         public ICollection<AuctionPrice> AuctionPrices { get; set; }
         public ICollection<Comment> Comment { get; set; }
         public ICollection<SoldGoods> SoldGoods { get; set; }
@@ -34,5 +29,6 @@ namespace TS.Domain.Core.Entities
         public ICollection<OrderLine> OreLines { get; set; }
         public ICollection<ProductCustomAttribute> productCustomAttributes { get; set; }
         public ICollection<ProductInventory> productInventories { get; set; }
+        #endregion Navigation properties
     }
 }

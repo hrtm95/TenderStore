@@ -1,6 +1,6 @@
 ﻿namespace TS.Domain.Core.Entities
 {
-    public class City 
+    public class City
     {
         #region Properties
 
@@ -11,7 +11,7 @@
 
         #region Navigation properties
 
-        public List<Address>? Addresses { get; set; }
+        public ICollection<Address>? Addresses { get; set; }
 
         #endregion Navigation properties
 
