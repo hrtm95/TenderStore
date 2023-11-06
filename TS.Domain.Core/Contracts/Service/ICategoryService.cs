@@ -5,10 +5,11 @@ namespace TS.Domain.Core.Contracts.Service
 {
     public interface ICategoryService
     {
+        Task<Category> GetBy(int id, CancellationToken cancellationToken);
         Task<List<Category>> GetAll(CancellationToken cancellationToken);
-        Task Update(CategoryDto categoryDto, CancellationToken cancellationToken);
-        Task Delete(int Id, CancellationToken cancellationToken);
-        Task Create(CategoryDto categoryDto, CancellationToken cancellationToken);
-        Task GetBy(int Id, CancellationToken cancellationToken);
+        Task Create(CategoryDto entity, CancellationToken cancellationToken);
+        Task Update(CategoryDto entity, CancellationToken cancellationToken);
+        Task Active(int categoryId, CancellationToken cancellationToken);
+        Task DeActive(int categoryId, CancellationToken cancellationToken);
     }
 }

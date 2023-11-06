@@ -7,8 +7,9 @@ namespace TS.Domain.Core.Contracts.Service
     {
         Task<List<ProductCategory>> GetAll(CancellationToken cancellationToken);
         Task Update(ProductCategoryDto productCategoryDto, CancellationToken cancellationToken);
-        Task Delete(int Id, CancellationToken cancellationToken);
         Task Create(ProductCategoryDto productCategoryDto, CancellationToken cancellationToken);
         Task GetBy(int Id, CancellationToken cancellationToken);
+        Task Active(int productCategoryId, CancellationToken cancellationToken);
+        Task DeActive(int productCategoryId, CancellationToken cancellationToken);
     }
 }

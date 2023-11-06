@@ -5,11 +5,9 @@ namespace TS.Domain.Core.Contracts.Service
 {
     public interface ICommentService
     {
-        Task<CommentDto> Get(int Id, CancellationToken cancellationToken);
-        Task<List<CommentDto>> Get(CancellationToken cancellationToken);
+        Task<Comment> GetBy(int id, CancellationToken cancellationToken);
         Task<List<Comment>> GetAll(CancellationToken cancellationToken);
-        Task Create(string comment, Guid expertId, CancellationToken cancellationToken);
-        Task<List<CommentDto>> GetBy(Guid expertId, CancellationToken cancellationToken);
+        Task Create(CommentDto entity, CancellationToken cancellationToken);
         Task Update(CommentDto entity, CancellationToken cancellationToken);
         Task Active(int commentId, CancellationToken cancellationToken);
         Task DeActive(int commentId, CancellationToken cancellationToken);

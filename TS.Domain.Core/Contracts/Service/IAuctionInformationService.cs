@@ -3,12 +3,14 @@ using TS.Domain.Core.Entities;
 
 namespace TS.Domain.Core.Contracts.Service
 {
-    public interface IAuctionInformationService 
+    public interface IAuctionInformationService
     {
+
+        Task<AuctionInformation> GetBy(int id, CancellationToken cancellationToken);
         Task<List<AuctionInformation>> GetAll(CancellationToken cancellationToken);
-        Task Update(AuctionInformationDto auctionInformationDto, CancellationToken cancellationToken);
-        Task Delete(int Id, CancellationToken cancellationToken);
-        Task Create(AuctionInformationDto auctionInformationDto, CancellationToken cancellationToken);
-        Task GetBy(int Id, CancellationToken cancellationToken);
+        Task Create(AuctionInformationDto entity, CancellationToken cancellationToken);
+        Task Update(AuctionInformationDto entity, CancellationToken cancellationToken);
+        Task Active(int AuctionInformationId, CancellationToken cancellationToken);
+        Task DeActive(int AuctionInformationId, CancellationToken cancellationToken);
     }
 }

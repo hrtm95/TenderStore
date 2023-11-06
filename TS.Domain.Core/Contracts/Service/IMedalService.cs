@@ -5,10 +5,11 @@ namespace TS.Domain.Core.Contracts.Service
 {
     public interface IMedalService
     {
+        Task<Medal> GetBy(int id, CancellationToken cancellationToken);
         Task<List<Medal>> GetAll(CancellationToken cancellationToken);
-        Task Update(MedalDto medalDto, CancellationToken cancellationToken);
-        Task Delete(int Id, CancellationToken cancellationToken);
-        Task Create(MedalDto medalDto, CancellationToken cancellationToken);
-        Task GetBy(int Id, CancellationToken cancellationToken);
+        Task Create(MedalDto entity, CancellationToken cancellationToken);
+        Task Update(MedalDto entity, CancellationToken cancellationToken);
+        Task Active(int medalId, CancellationToken cancellationToken);
+        Task DeActive(int medalId, CancellationToken cancellationToken);
     }
 }

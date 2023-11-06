@@ -7,8 +7,9 @@ namespace TS.Domain.Core.Contracts.Service
     {
         Task<List<ProductCustomAttribute>> GetAll(CancellationToken cancellationToken);
         Task Update(ProductCustomAttributeDto productCustomAttributeDto, CancellationToken cancellationToken);
-        Task Delete(int Id, CancellationToken cancellationToken);
         Task Create(ProductCustomAttributeDto productCustomAttributeDto, CancellationToken cancellationToken);
         Task GetBy(int Id, CancellationToken cancellationToken);
+        Task Active(int productCustomAttributeId, CancellationToken cancellationToken);
+        Task DeActive(int productCustomAttributeId, CancellationToken cancellationToken);
     }
 }

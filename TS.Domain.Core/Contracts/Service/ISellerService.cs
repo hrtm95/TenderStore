@@ -5,10 +5,11 @@ namespace TS.Domain.Core.Contracts.Service
 {
     public interface ISellerService
     {
+        Task<Seller> GetBy(int id, CancellationToken cancellationToken);
         Task<List<Seller>> GetAll(CancellationToken cancellationToken);
-        Task Update(SellerDto sellerDto, CancellationToken cancellationToken);
-        Task Delete(int Id, CancellationToken cancellationToken);
-        Task Create(SellerDto sellerDto, CancellationToken cancellationToken);
-        Task GetBy(int Id, CancellationToken cancellationToken);
+        Task Create(SellerDto Seller, CancellationToken cancellationToken);
+        Task Update(SellerDto Seller, CancellationToken cancellationToken);
+        Task Active(int sellerId, CancellationToken cancellationToken);
+        Task DeActive(int sellerId, CancellationToken cancellationToken);
     }
 }

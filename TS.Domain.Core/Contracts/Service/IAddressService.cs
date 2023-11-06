@@ -12,8 +12,9 @@ namespace TS.Domain.Core.Contracts.Service
     {
         Task<List<Address>> GetAll(CancellationToken cancellationToken);
         Task Update(AddressDto addressDto, CancellationToken cancellationToken);
-        Task Delete(int Id, CancellationToken cancellationToken);
         Task Create(AddressDto addressDto, CancellationToken cancellationToken);
-        Task<AddressDto> GetBy(int Id, CancellationToken cancellationToken);
+        Task<Address> GetBy(int Id, CancellationToken cancellationToken);
+        Task Active(int AddressId, CancellationToken cancellationToken);
+        Task DeActive(int AddressId, CancellationToken cancellationToken);
     }
 }
