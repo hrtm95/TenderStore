@@ -7,7 +7,6 @@ namespace TS.Domain.Core.Contracts.Repository
     {
         Task<List<ProductInventory>> GetAll(CancellationToken cancellationToken);
         Task Update(ProductInventoryDto productInventoryDto, CancellationToken cancellationToken);
-        Task Delete(int Id, CancellationToken cancellationToken);
         Task Create(ProductInventoryDto productInventoryDto, CancellationToken cancellationToken);
         Task GetBy(int Id, CancellationToken cancellationToken);
     }

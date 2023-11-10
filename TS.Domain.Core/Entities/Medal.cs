@@ -12,6 +12,8 @@ namespace TS.Domain.Core.Entities
         public int Id { get; set; }
         public double FeePercentage { get; set; }
         public int ProductCount { get; set; }
+        public bool IsActive { get; set; } = false;
+        public bool IsDeleted { get; set; } = false;
         #endregion Properties
 
         #region Navigation properties

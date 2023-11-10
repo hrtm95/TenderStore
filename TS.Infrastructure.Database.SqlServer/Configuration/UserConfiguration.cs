@@ -16,7 +16,7 @@ namespace TS.Infrastructure.Database.SqlServer.Configuration
              .WithMany(e => e.Users)
              .HasForeignKey(e => e.AddressId).OnDelete(DeleteBehavior.Restrict);
 
-            builder.ToTable("User");
+            builder.ToTable("Users");
         }
     }
 }

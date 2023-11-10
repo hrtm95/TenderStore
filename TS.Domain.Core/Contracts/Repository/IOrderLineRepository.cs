@@ -7,7 +7,6 @@ namespace TS.Domain.Core.Contracts.Repository
     {
         Task<List<OrderLine>> GetAll(CancellationToken cancellationToken);
         Task Update(OrderLineDto orderLineDto, CancellationToken cancellationToken);
-        Task Delete(int Id, CancellationToken cancellationToken);
         Task Create(OrderLineDto orderLineDto , CancellationToken cancellationToken);
         Task GetBy(int Id, CancellationToken cancellationToken);
     }

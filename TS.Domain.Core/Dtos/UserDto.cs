@@ -16,6 +16,8 @@ namespace TS.Domain.Core.Dtos
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
+        public bool IsActive { get; set; }
+        public bool IsDelete { get; set; }
         #endregion Properties
 
         #region Navigation properties

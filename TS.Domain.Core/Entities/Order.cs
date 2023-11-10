@@ -11,6 +11,8 @@ namespace TS.Domain.Core.Entities
         #region Properties
         public int Id { get; set; }
         public DateTime OrderAt { get; set; }
+        public bool IsActive { get; set; } = false;
+        public bool IsDeleted { get; set; } = false;
         #endregion Properties
 
         #region Navigation properties

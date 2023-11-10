@@ -5,7 +5,9 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
+using System.Reflection;
 using TS.Infrastructure.Database.SqlServer.Common;
+using TS.Infrastructures.DB.Repo.Ef.AutoMapping;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +22,9 @@ builder.Services.AddAuthorization(options =>
 });
 builder.Services.AddRazorPages()
     .AddMicrosoftIdentityUI();
+
+
+builder.Services.AddAutoMapper(Assembly.GetAssembly(typeof(AutoMapping)));
 builder.Services.AddDbContext<TSDbcontext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 

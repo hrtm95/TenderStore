@@ -7,7 +7,6 @@ namespace TS.Domain.Core.Contracts.Repository
     {
         Task<List<OrderStatus>> GetAll(CancellationToken cancellationToken);
         Task Update(OrderStatusDto orderStatusDto, CancellationToken cancellationToken);
-        Task Delete(int Id, CancellationToken cancellationToken);
         Task Create(OrderStatusDto orderStatusDto, CancellationToken cancellationToken);
         Task GetBy(int Id, CancellationToken cancellationToken);
     }

@@ -10,6 +10,7 @@ namespace TS.Infrastructure.Database.SqlServer.Common
         {
 
         }
+        public DbSet<Address> Addresses { get; set; }
         public DbSet<AuctionPrice> AuctionPrices { get; set; }
         public DbSet<AuctionInformation> AuctionInformations { get; set; }
         public DbSet<ShopStand> ShopStands { get; set; }
@@ -26,6 +27,7 @@ namespace TS.Infrastructure.Database.SqlServer.Common
         public DbSet<CustomAttribute> CustomAttributes { get; set; }
         public DbSet<OrderLine> OrderLines { get; set; }
         public DbSet<OrderStatus> OrderStatus { get; set; }
+        public DbSet<ProductCategory> ProductCategories { get; set; }
         public DbSet<ProductCustomAttribute> ProductCustomAttributes { get; set; }
         public DbSet<ProductInventory> ProductInventory { get; set; }
 

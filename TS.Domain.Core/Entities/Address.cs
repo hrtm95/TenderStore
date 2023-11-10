@@ -14,6 +14,8 @@ namespace TS.Domain.Core.Entities
         public string Street { get; set; }
         public string PostalCode { get; set; }
         public string MoreDescription { get; set; }
+        public bool IsActive { get; set; } = false;
+        public bool IsDeleted { get; set; } = false;
         #endregion Properties
 
         #region Navigation properties
