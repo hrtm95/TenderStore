@@ -1,10 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using System.Reflection.Emit;
 using TS.Domain.Core.Entities;
 using TS.Infrastructure.Database.SqlServer.Configuration;
 
 namespace TS.Infrastructure.Database.SqlServer.Common
 {
-    public class TSDbcontext : DbContext
+    public class TSDbcontext : IdentityDbContext<User, IdentityRole<int>,int>
     {
         public TSDbcontext(DbContextOptions<TSDbcontext> options) : base(options)
         {
@@ -31,9 +34,12 @@ namespace TS.Infrastructure.Database.SqlServer.Common
         public DbSet<ProductCustomAttribute> ProductCustomAttributes { get; set; }
         public DbSet<ProductInventory> ProductInventory { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder builder)
         {
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(AuctionInformationConfiguration).Assembly);
+            builder.ApplyConfigurationsFromAssembly(typeof(AuctionInformationConfiguration).Assembly);
+            builder.Entity<IdentityUserLogin<int>> ().HasKey(p => new { p.LoginProvider, p.ProviderKey });
+            builder.Entity<IdentityUserRole<int>>().HasKey(p => new { p.UserId, p.RoleId });
+            builder.Entity<IdentityUserToken<int>>().HasKey(p => new { p.UserId, p.LoginProvider });
         }
     }
 }
