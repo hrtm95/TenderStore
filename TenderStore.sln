@@ -27,7 +27,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repositories", "Repositorie
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Databases", "Databases", "{EC1AB513-F5A0-45EE-9DF2-5D0BF974DFC3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TS.Infrastructures.DB.Repo.Ef", "TS.Infrastructures.DB.Repo.Ef\TS.Infrastructures.DB.Repo.Ef.csproj", "{238ACE23-3CAE-4222-AA9B-5A822759A048}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TS.Infrastructures.DB.Repo.Ef", "TS.Infrastructures.DB.Repo.Ef\TS.Infrastructures.DB.Repo.Ef.csproj", "{238ACE23-3CAE-4222-AA9B-5A822759A048}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
