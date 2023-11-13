@@ -7,8 +7,8 @@ namespace TS.Domain.ApplicationServices.AppService
 {
     public class UserApplicationService : IUserApplicationService
     {
-        private readonly IUserApplicationService _userService;
-        public UserApplicationService(IUserApplicationService userService)
+        private readonly IUserService _userService;
+        public UserApplicationService(IUserService userService)
         {
             _userService = userService;  
         }

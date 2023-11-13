@@ -6,7 +6,7 @@ namespace TS.Domain.Core.Contracts.Repository
     public interface IUserRepository
     {
         Task<List<User>> GetAll(CancellationToken cancellationToken);
-        Task Update(UserDto userDto , CancellationToken cancellationToken);
+        Task Update(UserDto userDto, CancellationToken cancellationToken);
         Task Delete(int Id, CancellationToken cancellationToken);
         Task Create(UserDto userDto, CancellationToken cancellationToken);
         Task GetBy(int Id, CancellationToken cancellationToken);

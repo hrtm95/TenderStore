@@ -11,7 +11,7 @@ namespace TS.Domain.Core.Entities
     {
         #region Properties
         public int Id { get; set; }
-        private SellingTypeEnum sellingType { get; set; }
+        public SellingTypeEnum SellingType { get; set; }
         public int Status { get; set; }
         public bool IsActive { get; set; } = false;
         public bool IsDeleted { get; set; } = false;

@@ -688,6 +688,9 @@ namespace TS.Infrastructure.Database.SqlServer.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
+                    b.Property<int>("sellingType")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("PictureId");

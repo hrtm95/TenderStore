@@ -12,7 +12,7 @@ using TS.Infrastructure.Database.SqlServer.Common;
 namespace TS.Infrastructure.Database.SqlServer.Migrations
 {
     [DbContext(typeof(TSDbcontext))]
-    [Migration("20231111183025_init")]
+    [Migration("20231113130751_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -689,6 +689,9 @@ namespace TS.Infrastructure.Database.SqlServer.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<int>("sellingType")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
