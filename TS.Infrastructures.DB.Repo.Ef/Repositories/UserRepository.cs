@@ -13,11 +13,17 @@ namespace TS.Infrastructures.DB.Repo.Ef
     {
         private readonly TSDbcontext _db;
         private readonly IMapper _mapper;
+        private readonly UserManager<User> _userManager;
+        private readonly SignInManager<User> _signInManager;
 
-        public UserRepository(TSDbcontext db, IMapper mapper)
+
+        public UserRepository(TSDbcontext db, IMapper mapper, UserManager<User> userManager, SignInManager<User> signInManager)
         {
             _db = db;
             _mapper = mapper;
+            _userManager = userManager;
+            _signInManager = signInManager;
+
         }
         public async Task<IdentityResult> Create(UserDto userDto, CancellationToken cancellationToken)
         {
@@ -46,17 +52,14 @@ namespace TS.Infrastructures.DB.Repo.Ef
 
                     UserName = userDto.Email,
                     Email = userDto.Email,
-                    PictureId = 1,
-                    Seller = new Seller()
-                    {
-                        SellerName = "علی",
-                        AddressId = 2,
-                        PictureId = 2,
-                        MedalId = 2,
-
-                    }
                 };
             }
+            user = new User
+            {
+                UserName = userDto.Email,
+                Email = userDto.Email,
+
+            };
 
             var result = await _userManager.CreateAsync(user, userDto.Password);
 
@@ -69,7 +72,7 @@ namespace TS.Infrastructures.DB.Repo.Ef
                 else
                 {
 
-                    await _userManager.AddToRoleAsync(user, userDto.Role);
+                    await _userManager.AddToRoleAsync(user, "Customer");
                 }
 
             }
@@ -124,7 +127,20 @@ namespace TS.Infrastructures.DB.Repo.Ef
             _mapper.Map(userDto, record);
             await _db.SaveChangesAsync(cancellationToken);
         }
+        public async Task<IdentityRole<int>> FindUser(int Id, CancellationToken cancellationToken)
+        {
+            var record = await _db.UserRoles.Where(x => x.UserId == Id).Include(p => p.RoleId)
+             .FirstOrDefaultAsync(cancellationToken);
+            var role = record.RoleId;
 
-
+            return null;
+        }
+        public async Task<SignInResult> Login(UserDto userDto, CancellationToken cancellationToken)
+            => await _signInManager.PasswordSignInAsync(userDto.Email, userDto.Password, true, false);
+        public async Task<User> GetByEmail(string Email, CancellationToken cancellationToken)
+        {
+            var User = await _userManager.Users.Where(e => e.Email == Email).FirstOrDefaultAsync();
+            return User;
+        }
     }
 }

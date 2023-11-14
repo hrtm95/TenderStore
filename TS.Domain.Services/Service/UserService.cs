@@ -45,5 +45,13 @@ namespace TS.Domain.Services.Service
         {
             await _userRepository.Update(userDto, cancellationToken);
         }
+        public async Task<User> GetByEmail(string Email, CancellationToken cancellationToken)
+            => await _userRepository.GetByEmail(Email, cancellationToken);
+
+        public async Task<SignInResult> Login(UserDto userDto, CancellationToken cancellationToken)
+            => await _userRepository.Login(userDto, cancellationToken);
+        public async Task<IdentityRole<int>> FindUser(int Id, CancellationToken cancellationToken)
+            => await _userRepository.FindUser(Id, cancellationToken);
+
     }
 }

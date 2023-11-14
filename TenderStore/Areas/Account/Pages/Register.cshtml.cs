@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using TS.Domain.Core.Contracts.ApplicationService;
 using TS.Domain.Core.Dtos;
-using TS.Endpoints.UI.Models.ViewModel;
 
 namespace TS.Endpoints.UI.Areas.Account.Pages
 {
@@ -17,11 +16,11 @@ namespace TS.Endpoints.UI.Areas.Account.Pages
             _UserAppService = userAppService;
             _mapper = mapper;
         }
-        public async Task<IActionResult> OnPostCreate(RegisterViewModel model, CancellationToken cancellationToken)
+        public async Task<IActionResult> OnPostCreate(UserDto model, CancellationToken cancellationToken)
         {
             if (ModelState.IsValid)
             {
-                var result = await _UserAppService.Create(_mapper.Map<UserDto>(model), cancellationToken);
+                var result = await _UserAppService.Create(model, cancellationToken);
                 if (result.Succeeded)
                 {
                     return LocalRedirect("/Account/Index");

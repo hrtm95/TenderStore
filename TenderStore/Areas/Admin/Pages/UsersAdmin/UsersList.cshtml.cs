@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using TS.Domain.Core.Contracts.ApplicationService;
@@ -5,6 +6,7 @@ using TS.Domain.Core.Entities;
 
 namespace TS.Endpoints.UI.Areas.Admin.UsersAdmin
 {
+    [Authorize("Admin")]
     public class UsersListModel : PageModel
     {
         private readonly IUserApplicationService _userApplicationService;

@@ -53,5 +53,15 @@ namespace TS.Domain.ApplicationServices.AppService
         {
             await _userService.Update(userDto, cancellationToken);
         }
+        public Task<SignInResult> Login(UserDto userDto, CancellationToken cancellationToken)
+        {
+
+            return _userService.Login(userDto, cancellationToken);
+        }
+        public async Task<IdentityRole<int>> FindUser(int Id, CancellationToken cancellationToken)
+        => await _userService.FindUser(Id, cancellationToken);
+        public async Task<User> GetByEmail(string Email, CancellationToken cancellationToken)
+        => await _userService.GetByEmail(Email, cancellationToken);
+
     }
 }

@@ -12,7 +12,7 @@ using TS.Infrastructure.Database.SqlServer.Common;
 namespace TS.Infrastructure.Database.SqlServer.Migrations
 {
     [DbContext(typeof(TSDbcontext))]
-    [Migration("20231113130751_init")]
+    [Migration("20231114073230_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -190,6 +190,9 @@ namespace TS.Infrastructure.Database.SqlServer.Migrations
                     b.Property<int>("AuctionPriceId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("CustomerId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
@@ -205,6 +208,8 @@ namespace TS.Infrastructure.Database.SqlServer.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AuctionPriceId");
+
+                    b.HasIndex("CustomerId");
 
                     b.HasIndex("UserId");
 
@@ -449,6 +454,9 @@ namespace TS.Infrastructure.Database.SqlServer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int?>("CustomerId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
@@ -469,6 +477,8 @@ namespace TS.Infrastructure.Database.SqlServer.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
 
                     b.HasIndex("ProductId");
 
@@ -505,6 +515,54 @@ namespace TS.Infrastructure.Database.SqlServer.Migrations
                     b.ToTable("CustomAttribute", (string)null);
                 });
 
+            modelBuilder.Entity("TS.Domain.Core.Entities.Customer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("AddressId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Birthday")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CardNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProfileImgUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("RegisterDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ShebaNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AddressId");
+
+                    b.ToTable("Customer", (string)null);
+                });
+
             modelBuilder.Entity("TS.Domain.Core.Entities.FixedPrice", b =>
                 {
                     b.Property<int>("Id")
@@ -512,6 +570,9 @@ namespace TS.Infrastructure.Database.SqlServer.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("CustomerId")
+                        .HasColumnType("int");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -529,6 +590,8 @@ namespace TS.Infrastructure.Database.SqlServer.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
 
                     b.HasIndex("ProductId");
 
@@ -568,6 +631,9 @@ namespace TS.Infrastructure.Database.SqlServer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int?>("CustomerId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
@@ -587,6 +653,8 @@ namespace TS.Infrastructure.Database.SqlServer.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
 
                     b.HasIndex("ProductId");
 
@@ -685,13 +753,13 @@ namespace TS.Infrastructure.Database.SqlServer.Migrations
                     b.Property<int>("SellerId")
                         .HasColumnType("int");
 
+                    b.Property<int>("SellingType")
+                        .HasColumnType("int");
+
                     b.Property<int?>("ShopStandId")
                         .HasColumnType("int");
 
                     b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<int>("sellingType")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -875,6 +943,9 @@ namespace TS.Infrastructure.Database.SqlServer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int?>("CustomerId")
+                        .HasColumnType("int");
+
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
@@ -882,6 +953,8 @@ namespace TS.Infrastructure.Database.SqlServer.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
 
                     b.HasIndex("ProductId");
 
@@ -901,21 +974,19 @@ namespace TS.Infrastructure.Database.SqlServer.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
-                    b.Property<int>("AddressId")
+                    b.Property<int?>("AddressId")
                         .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
                     b.Property<string>("Family")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
@@ -931,7 +1002,6 @@ namespace TS.Infrastructure.Database.SqlServer.Migrations
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NormalizedEmail")
@@ -940,21 +1010,16 @@ namespace TS.Infrastructure.Database.SqlServer.Migrations
                     b.Property<string>("NormalizedUserName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<int>("PictureId")
+                    b.Property<int?>("PictureId")
                         .HasColumnType("int");
 
                     b.Property<string>("SecurityStamp")
@@ -993,6 +1058,10 @@ namespace TS.Infrastructure.Database.SqlServer.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("TS.Domain.Core.Entities.Customer", null)
+                        .WithMany("AuctionInformation")
+                        .HasForeignKey("CustomerId");
+
                     b.HasOne("TS.Domain.Core.Entities.User", "User")
                         .WithMany("AuctionInformation")
                         .HasForeignKey("UserId")
@@ -1017,6 +1086,10 @@ namespace TS.Infrastructure.Database.SqlServer.Migrations
 
             modelBuilder.Entity("TS.Domain.Core.Entities.Comment", b =>
                 {
+                    b.HasOne("TS.Domain.Core.Entities.Customer", null)
+                        .WithMany("Comments")
+                        .HasForeignKey("CustomerId");
+
                     b.HasOne("TS.Domain.Core.Entities.Product", "Product")
                         .WithMany("Comment")
                         .HasForeignKey("ProductId")
@@ -1045,8 +1118,22 @@ namespace TS.Infrastructure.Database.SqlServer.Migrations
                     b.Navigation("Category");
                 });
 
+            modelBuilder.Entity("TS.Domain.Core.Entities.Customer", b =>
+                {
+                    b.HasOne("TS.Domain.Core.Entities.Address", "Address")
+                        .WithMany("Customers")
+                        .HasForeignKey("AddressId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Address");
+                });
+
             modelBuilder.Entity("TS.Domain.Core.Entities.FixedPrice", b =>
                 {
+                    b.HasOne("TS.Domain.Core.Entities.Customer", null)
+                        .WithMany("FixedPrice")
+                        .HasForeignKey("CustomerId");
+
                     b.HasOne("TS.Domain.Core.Entities.Product", "Product")
                         .WithMany("FixedPrice")
                         .HasForeignKey("ProductId")
@@ -1058,6 +1145,10 @@ namespace TS.Infrastructure.Database.SqlServer.Migrations
 
             modelBuilder.Entity("TS.Domain.Core.Entities.Order", b =>
                 {
+                    b.HasOne("TS.Domain.Core.Entities.Customer", null)
+                        .WithMany("Order")
+                        .HasForeignKey("CustomerId");
+
                     b.HasOne("TS.Domain.Core.Entities.Product", null)
                         .WithMany("Orders")
                         .HasForeignKey("ProductId");
@@ -1226,6 +1317,10 @@ namespace TS.Infrastructure.Database.SqlServer.Migrations
 
             modelBuilder.Entity("TS.Domain.Core.Entities.SoldGoods", b =>
                 {
+                    b.HasOne("TS.Domain.Core.Entities.Customer", null)
+                        .WithMany("SoldGoods")
+                        .HasForeignKey("CustomerId");
+
                     b.HasOne("TS.Domain.Core.Entities.Product", "Product")
                         .WithMany("SoldGoods")
                         .HasForeignKey("ProductId")
@@ -1248,14 +1343,12 @@ namespace TS.Infrastructure.Database.SqlServer.Migrations
                     b.HasOne("TS.Domain.Core.Entities.Address", "Address")
                         .WithMany("Users")
                         .HasForeignKey("AddressId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("TS.Domain.Core.Entities.Picture", "Picture")
                         .WithMany("Users")
                         .HasForeignKey("PictureId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Address");
 
@@ -1264,6 +1357,8 @@ namespace TS.Infrastructure.Database.SqlServer.Migrations
 
             modelBuilder.Entity("TS.Domain.Core.Entities.Address", b =>
                 {
+                    b.Navigation("Customers");
+
                     b.Navigation("Sellers");
 
                     b.Navigation("Users");
@@ -1289,6 +1384,19 @@ namespace TS.Infrastructure.Database.SqlServer.Migrations
             modelBuilder.Entity("TS.Domain.Core.Entities.CustomAttribute", b =>
                 {
                     b.Navigation("ProductCustomAttributes");
+                });
+
+            modelBuilder.Entity("TS.Domain.Core.Entities.Customer", b =>
+                {
+                    b.Navigation("AuctionInformation");
+
+                    b.Navigation("Comments");
+
+                    b.Navigation("FixedPrice");
+
+                    b.Navigation("Order");
+
+                    b.Navigation("SoldGoods");
                 });
 
             modelBuilder.Entity("TS.Domain.Core.Entities.Medal", b =>

@@ -13,5 +13,9 @@ namespace TS.Domain.Core.Contracts.Service
         Task GetBy(int Id, CancellationToken cancellationToken);
         Task Active(int userId, CancellationToken cancellationToken);
         Task DeActive(int userId, CancellationToken cancellationToken);
+        Task<SignInResult> Login(UserDto userDto, CancellationToken cancellationToken);
+        Task<User> GetByEmail(string Email, CancellationToken cancellationToken);
+        Task<IdentityRole<int>> FindUser(int Id, CancellationToken cancellationToken);
+
     }
 }
