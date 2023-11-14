@@ -15,7 +15,7 @@ namespace TS.Infrastructure.Database.SqlServer.Configuration
         {
             builder.HasKey(x => x.Id);
             builder.HasOne(e => e.Address)
-           .WithMany(e => e.Customer)
+           .WithMany(e => e.Customers)
            .HasForeignKey(e => e.AddressId).OnDelete(DeleteBehavior.Restrict);
             builder.ToTable("Customer");
         }
