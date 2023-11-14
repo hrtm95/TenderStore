@@ -1,4 +1,5 @@
-﻿using TS.Domain.Core.Contracts.Repository;
+﻿using Microsoft.AspNetCore.Identity;
+using TS.Domain.Core.Contracts.Repository;
 using TS.Domain.Core.Contracts.Service;
 using TS.Domain.Core.Dtos;
 using TS.Domain.Core.Entities;
@@ -13,19 +14,18 @@ namespace TS.Domain.Services.Service
             _userRepository = userRepository;
         }
 
-        public Task Active(int userId, CancellationToken cancellationToken)
+        public async Task Active(int userId, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+           await _userRepository.Active(userId, cancellationToken);
         }
 
-        public async Task Create(UserDto userDto, CancellationToken cancellationToken)
-        {
-            await _userRepository.Create(userDto, cancellationToken);
-        }
+        public async Task<IdentityResult> Create(UserDto userDto, CancellationToken cancellationToken)
+     => await _userRepository.Create(userDto, cancellationToken);
 
-        public Task DeActive(int userId, CancellationToken cancellationToken)
+
+        public async Task DeActive(int userId, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            await _userRepository.DeActive(userId, cancellationToken);
         }
 
         public Task Delete(int Id, CancellationToken cancellationToken)

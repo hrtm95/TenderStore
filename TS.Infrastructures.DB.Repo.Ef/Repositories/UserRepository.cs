@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using TS.Domain.Core.Contracts.Repository;
 using TS.Domain.Core.Contracts.Service;
@@ -18,19 +19,63 @@ namespace TS.Infrastructures.DB.Repo.Ef
             _db = db;
             _mapper = mapper;
         }
-        public async Task Create(UserDto userDto, CancellationToken cancellationToken)
+        public async Task<IdentityResult> Create(UserDto userDto, CancellationToken cancellationToken)
         {
-            var record = _mapper.Map<User>(userDto);
-            await _db.Users.AddAsync(record);
-            try
+            var user = new User();
+            if (userDto.Role == "Customer")
             {
-                await _db.SaveChangesAsync(cancellationToken);
+                user = new User
+                {
+                    UserName = userDto.Email,
+                    Email = userDto.Email,
+
+                };
             }
-            catch (Exception ex)
+            if (userDto.Role == "Admin")
             {
-                Console.WriteLine(ex.ToString());
+                user = new User
+                {
+                    UserName = userDto.Email,
+                    Email = userDto.Email,
+                };
             }
+            if (userDto.Role == "Seller")
+            {
+                user = new User
+                {
+
+                    UserName = userDto.Email,
+                    Email = userDto.Email,
+                    PictureId = 1,
+                    Seller = new Seller()
+                    {
+                        SellerName = "علی",
+                        AddressId = 2,
+                        PictureId = 2,
+                        MedalId = 2,
+
+                    }
+                };
+            }
+
+            var result = await _userManager.CreateAsync(user, userDto.Password);
+
+            if (result.Succeeded)
+            {
+                if (userDto.Role == null)
+                {
+                    await _userManager.AddToRoleAsync(user, "Customer");
+                }
+                else
+                {
+
+                    await _userManager.AddToRoleAsync(user, userDto.Role);
+                }
+
+            }
+            return result;
         }
+
 
         public async Task Delete(int Id, CancellationToken cancellationToken)
         {

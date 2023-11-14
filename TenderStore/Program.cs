@@ -8,6 +8,7 @@ using TS.Domain.Core.Contracts.Repository;
 using TS.Domain.Core.Contracts.Service;
 using TS.Domain.Core.Entities;
 using TS.Domain.Services.Service;
+using TS.Endpoints.UI.Models.Maping;
 using TS.Infrastructure.Database.SqlServer.Common;
 using TS.Infrastructures.DB.Repo.Ef;
 using TS.Infrastructures.DB.Repo.Ef.AutoMapping;
@@ -28,6 +29,8 @@ builder.Services.AddRazorPages();
 
 
 builder.Services.AddAutoMapper(Assembly.GetAssembly(typeof(AutoMapping)));
+builder.Services.AddAutoMapper(Assembly.GetAssembly(typeof(Map)));
+
 builder.Services.AddDbContext<TSDbcontext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 

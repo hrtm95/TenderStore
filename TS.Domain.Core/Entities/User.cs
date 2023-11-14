@@ -15,9 +15,9 @@ namespace TS.Domain.Core.Entities
         #endregion Properties
 
         #region Navigation properties
-        public int PictureId { get; set; }
+        public int? PictureId { get; set; }
         public Picture? Picture { get; set; }
-        public int AddressId { get; set; }
+        public int? AddressId { get; set; }
         public Address? Address { get; set; }
         public ICollection<Comment> Comments { get; set; }
         public ICollection<SoldGoods> SoldGoods { get; set; }

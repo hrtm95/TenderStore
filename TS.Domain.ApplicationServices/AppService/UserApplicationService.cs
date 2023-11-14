@@ -1,4 +1,5 @@
-﻿using TS.Domain.Core.Contracts.ApplicationService;
+﻿using Microsoft.AspNetCore.Identity;
+using TS.Domain.Core.Contracts.ApplicationService;
 using TS.Domain.Core.Contracts.Service;
 using TS.Domain.Core.Dtos;
 using TS.Domain.Core.Entities;
@@ -18,9 +19,21 @@ namespace TS.Domain.ApplicationServices.AppService
             throw new NotImplementedException();
         }
 
-        public async Task Create(UserDto userDto, CancellationToken cancellationToken)
+        public async Task<IdentityResult> Create(UserDto userDto, CancellationToken cancellationToken)
         {
-            await _userService.Create(userDto, cancellationToken);
+            var result = await _userService.Create(userDto, cancellationToken);
+            if (result.Succeeded)
+            {
+                //var confirmKey = await _userService.SendEmailActivation(command.Email, cancellationToken);
+                //await _userService.SetConfirmKey(command.Email, confirmKey);
+                return result;
+            }
+            else
+            {
+                return result;
+            }
+
+
         }
 
         public Task DeActive(int userId, CancellationToken cancellationToken)

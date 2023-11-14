@@ -16,7 +16,7 @@ namespace TS.Infrastructure.Database.SqlServer.Common
         public DbSet<Address> Addresses { get; set; }
         public DbSet<AuctionPrice> AuctionPrices { get; set; }
         public DbSet<AuctionInformation> AuctionInformations { get; set; }
-        public DbSet<ShopStand> ShopStands { get; set; }
+        public DbSet<Customer> Customer { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<FixedPrice> FixedPrices { get; set; }
@@ -24,6 +24,7 @@ namespace TS.Infrastructure.Database.SqlServer.Common
         public DbSet<Picture> Pictures { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<SoldGoods> SoldGoods { get; set; }
+        public DbSet<ShopStand> ShopStands { get; set; }
         public DbSet<Seller> Sellers { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Order> Orders { get; set; }

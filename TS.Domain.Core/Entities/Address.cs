@@ -19,6 +19,8 @@ namespace TS.Domain.Core.Entities
         #endregion Properties
 
         #region Navigation properties
+        public ICollection<Customer> Customers { get; set; }
+
         public ICollection<User> Users { get; set; }
         public ICollection<Seller> Sellers { get; set; }
         public City? City { get; set; }
