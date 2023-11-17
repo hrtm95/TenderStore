@@ -1,4 +1,72 @@
 ﻿@page
 @model TS.Endpoints.UI.Areas.Admin.Pages.UsersAdmin.EditUserModel
 @{
+    Layout = "Shared/_LayoutAdmin";
 }
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title-wrap bar-success">
+                    <h4 class="card-title" id="basic-layout-form">ویرایش کاربر</h4>
+                </div>
+                <p class="mb-0"></p>
+            </div>
+            <div class="card-body">
+                <div class="px-3">
+                    <form class="form" method="post" asp-page-handler="Update">
+                        @* <input type="text" name="@Model.user.Id" disabled="" name="Id" /> *@
+
+                        <div class="form-body">
+                            <h4 class="form-section">
+                                <i class="icon-user"></i> اطلاعات کاربر
+                            </h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="projectinput3">آی دی</label>
+                                        <input type="text" id="projectinput3" class="form-control" name="Id"
+                                               value="@Html.ValueFor(x => x.user.Id)">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="projectinput3">ایمیل</label>
+                                        <input type="text" id="projectinput3" class="form-control" name="Email"
+                                               value="@Html.ValueFor(x => x.user.Email)">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="projectinput2">کلمه عبور</label>
+                                        <input type="text" id="projectinput2" class="form-control" name="Password"
+                                               value="@Html.ValueFor(x => x.user.PasswordHash)">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <select class="form-control" name="Role">
+
+                                        <option value="Admin">مدیر سایت</option>
+                                        <option value="Customer">مشتری</option>
+                                        <option value="Seller">فروشنده</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-danger mr-1">
+                                    <i class="icon-trash"></i> لغو
+                                </button>
+                                <button type="submit" class="btn btn-success">
+                                    <i class="icon-note"></i> ذخیره
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

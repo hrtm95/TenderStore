@@ -57,11 +57,6 @@ namespace TS.Infrastructures.DB.Repo.Ef
                 Console.WriteLine(ex.ToString());
             }
         }
-
-        public Task GetBy(int Id, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
-        }
         public async Task Active(int ShopStandId, CancellationToken cancellationToken)
         {
             var record = await _db.ShopStands
@@ -80,6 +75,9 @@ namespace TS.Infrastructures.DB.Repo.Ef
             await _db.SaveChangesAsync(cancellationToken);
         }
 
-
+        public Task<ShopStand> GetBy(int Id, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

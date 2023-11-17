@@ -59,7 +59,7 @@ builder.Services.AddIdentity<User, IdentityRole<int>>(
 //builder.Services.AddScoped<IAddressRepository, AddressRepository>();
 //builder.Services.AddScoped<IAuctionRepository, AuctionRepository>();
 //builder.Services.AddScoped<IAuctionInformationRpository, AuctionInformationRpository>();
-//builder.Services.AddScoped<IShopStandReposiory, ShopStandReposiory>();
+builder.Services.AddScoped<IShopStandReposiory, ShopStandReposiory>();
 //builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 //builder.Services.AddScoped<ICommentRepository, CommentRepository>();
 //builder.Services.AddScoped<ICustomAttributeTemplateRepository, CustomAttributeTemplateRepository>();
@@ -73,7 +73,7 @@ builder.Services.AddIdentity<User, IdentityRole<int>>(
 //builder.Services.AddScoped<IProductInventoryRepository, ProductInventoryRepository>();
 //builder.Services.AddScoped<IProductCategoryRepository, ProductCategoryRepository>();
 //builder.Services.AddScoped<IProductCustomAttributeRepository, ProductCustomAttributeRepository>();
-//builder.Services.AddScoped<ISellerRepository, SellerRepository>();
+builder.Services.AddScoped<ISellerRepository, SellerRepository>();
 //builder.Services.AddScoped<ISoldRepository, SoldRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 
@@ -82,7 +82,7 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 //builder.Services.AddScoped<IAddressService, AddressService>();
 //builder.Services.AddScoped<IAuctionPriceService, AuctionService>();
 //builder.Services.AddScoped<IAuctionInformationService, AuctionInformationService>();
-//builder.Services.AddScoped<IShopStandService, ShopStandService>();
+builder.Services.AddScoped<IShopStandService, ShopStandService>();
 //builder.Services.AddScoped<ICategoryService, CategoryService>();
 //builder.Services.AddScoped<ICommentService, CommentService>();
 //builder.Services.AddScoped<ICustomAttributeService, CustomAttributeService>();
@@ -96,7 +96,7 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 //builder.Services.AddScoped<IProductCategoryService, ProductCategoryService>();
 //builder.Services.AddScoped<IProductCustomAttributeService, ProductCustomAttributeService>();
 //builder.Services.AddScoped<IProductInventoryService, ProductInventoryService>();
-//builder.Services.AddScoped<ISellerService, SellerService>();
+builder.Services.AddScoped<ISellerService, SellerService>();
 //builder.Services.AddScoped<ISoldGoodsService, SoldGoodsService>();
 builder.Services.AddScoped<IUserService, UserService>();
 
@@ -105,7 +105,7 @@ builder.Services.AddScoped<IUserService, UserService>();
 //builder.Services.AddScoped<IAddressApplicationService, AddressApplicationService>();
 //builder.Services.AddScoped<IAuctionApplicationService, AuctionApplicationService>();
 //builder.Services.AddScoped<IAuctionInformationApplicationService, AuctionInformationApplicationService>();
-//builder.Services.AddScoped<IShopStandApplicationService, ShopStandApplicationService>();
+builder.Services.AddScoped<IShopStandApplicationService, ShopStandApplicationService>();
 //builder.Services.AddScoped<ICategoryApplicationService, CategoryApplicationService>();
 //builder.Services.AddScoped<ICommentApplicationService, CommentAppService>();
 //builder.Services.AddScoped<ICustomAttributeApplicationService, CustomAttributeApplicationService>();
@@ -119,9 +119,15 @@ builder.Services.AddScoped<IUserService, UserService>();
 //builder.Services.AddScoped<IProductCategoryApplicationService, ProductCategoryApplicationService>();
 //builder.Services.AddScoped<IProductCustomAttributeApplicationService, ProductCustomAttributeApplicationService>();
 //builder.Services.AddScoped<IProductInventoryApplicationService, ProductInventoryApplicationService>();
-//builder.Services.AddScoped<ISellerApplicationService, SellerApplicationService>();
+builder.Services.AddScoped<ISellerApplicationService, SellerApplicationService>();
 //builder.Services.AddScoped<ISoldGoodsApplicationService, SoldGoodsApplicationService>();
 builder.Services.AddScoped<IUserApplicationService, UserApplicationService>();
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("Admin",
+        policy => policy.RequireRole("Admin"));
+});
 
 
 var app = builder.Build();
@@ -139,8 +145,9 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthorization();
 app.UseAuthentication();
+app.UseAuthorization();
+
 
 app.MapRazorPages();
 app.MapControllers();

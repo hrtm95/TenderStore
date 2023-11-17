@@ -1,4 +1,5 @@
 ﻿using TS.Domain.Core.Contracts.ApplicationService;
+using TS.Domain.Core.Contracts.Service;
 using TS.Domain.Core.Dtos;
 using TS.Domain.Core.Entities;
 
@@ -6,8 +7,8 @@ namespace TS.Domain.ApplicationServices.AppService
 {
     public class ShopStandApplicationService : IShopStandApplicationService
     {
-        private readonly IShopStandApplicationService _ShopStandRepository;
-        public ShopStandApplicationService(IShopStandApplicationService ShopStandRepository)
+        private readonly IShopStandService _ShopStandRepository;
+        public ShopStandApplicationService(IShopStandService ShopStandRepository)
         {
             _ShopStandRepository = ShopStandRepository; 
         }
@@ -25,6 +26,11 @@ namespace TS.Domain.ApplicationServices.AppService
         public async Task DeActive(int shopStandId, CancellationToken cancellationToken)
         {
             await _ShopStandRepository.DeActive(shopStandId, cancellationToken);
+        }
+
+        public Task Delete(int Id, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<List<ShopStand>> GetAll(CancellationToken cancellationToken)

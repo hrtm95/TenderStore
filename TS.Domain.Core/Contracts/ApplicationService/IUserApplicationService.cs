@@ -9,7 +9,7 @@ namespace TS.Domain.Core.Contracts.ApplicationService
         Task<List<User>> GetAll(CancellationToken cancellationToken);
         Task Update(UserDto userDto, CancellationToken cancellationToken);
         Task<IdentityResult> Create(UserDto userDto, CancellationToken cancellationToken);
-        Task GetBy(int Id, CancellationToken cancellationToken);
+        Task<User> GetBy(int Id, CancellationToken cancellationToken);
         Task Active(int userId, CancellationToken cancellationToken);
         Task DeActive(int userId, CancellationToken cancellationToken);
         Task<SignInResult> Login(UserDto userDto, CancellationToken cancellationToken);

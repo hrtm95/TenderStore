@@ -11,5 +11,7 @@ namespace TS.Domain.Core.Contracts.ApplicationService
         Task Update(SellerDto Seller, CancellationToken cancellationToken);
         Task Active(int sellerId, CancellationToken cancellationToken);
         Task DeActive(int sellerId, CancellationToken cancellationToken);
+        Task Delete(int Id, CancellationToken cancellationToken);
+
     }
 }

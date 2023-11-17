@@ -1,4 +1,61 @@
-﻿@page
+﻿@page "/Admin/ShopStandsList"
 @model TS.Endpoints.UI.Areas.Admin.Pages.ShopStandsAdmin.ShopStandsListModel
 @{
 }
+
+
+<div class="row">
+    <div class="col-12">
+
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">لیست  غرفه ها</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div class="table-responsive">
+                    <table id="example5" class="table table-bordered table-striped"
+                           style="width:100%">
+                        <thead>
+
+                            <tr>
+                                <th>نام غرفه</th>
+                                <th>توضیحات</th>
+                                <th>فعالیت</th>
+                                <th>فروشنده</th>
+                                <th>عملیات</th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.shopStands)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Description)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.IsActive)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.seller.SellerName)
+                                    </td>d>
+                                    <td>
+                                        <a asp-page-handler="Edit" asp-page="EditUser" asp-route-id="@item.Id">Edit</a>
+                                    </td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    </div>
+</div>

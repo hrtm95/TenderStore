@@ -48,12 +48,6 @@ namespace TS.Infrastructures.DB.Repo.Ef
               .ToListAsync(cancellationToken);
             return records;
         }
-
-        public Task GetBy(int Id, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task Update(SellerDto sellerDto, CancellationToken cancellationToken)
         {
             var record = await _mapper.ProjectTo<Seller>(_db.Set<Seller>())
@@ -77,6 +71,11 @@ namespace TS.Infrastructures.DB.Repo.Ef
                .FirstOrDefaultAsync(cancellationToken);
             record.IsActive = false;
             await _db.SaveChangesAsync(cancellationToken);
+        }
+
+        public Task<Seller> GetBy(int id, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
         }
     }
 }

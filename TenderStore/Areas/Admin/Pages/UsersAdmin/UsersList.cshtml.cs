@@ -6,7 +6,7 @@ using TS.Domain.Core.Entities;
 
 namespace TS.Endpoints.UI.Areas.Admin.UsersAdmin
 {
-    [Authorize("Admin")]
+
     public class UsersListModel : PageModel
     {
         private readonly IUserApplicationService _userApplicationService;

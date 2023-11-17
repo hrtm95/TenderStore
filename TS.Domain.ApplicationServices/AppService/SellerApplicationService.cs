@@ -7,8 +7,8 @@ namespace TS.Domain.ApplicationServices.AppService
 {
     public class SellerApplicationService : ISellerApplicationService
     {
-        private readonly ISellerApplicationService _sellerService;
-        public SellerApplicationService(ISellerApplicationService sellerService)
+        private readonly ISellerService _sellerService;
+        public SellerApplicationService(ISellerService sellerService)
         {
             _sellerService = sellerService;   
         }
@@ -28,10 +28,15 @@ namespace TS.Domain.ApplicationServices.AppService
             throw new NotImplementedException();
         }
 
+        public Task Delete(int Id, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<List<Seller>> GetAll(CancellationToken cancellationToken)
         => await _sellerService.GetAll(cancellationToken);
 
-        public Task GetBy(int Id, CancellationToken cancellationToken)
+        public Task<Seller> GetBy(int id, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
@@ -41,9 +46,5 @@ namespace TS.Domain.ApplicationServices.AppService
             await _sellerService.Update(sellerDto, cancellationToken);   
         }
 
-        Task<Seller> ISellerApplicationService.GetBy(int id, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

@@ -12,7 +12,7 @@ using TS.Infrastructure.Database.SqlServer.Common;
 namespace TS.Infrastructure.Database.SqlServer.Migrations
 {
     [DbContext(typeof(TSDbcontext))]
-    [Migration("20231114073230_init")]
+    [Migration("20231114131806_init")]
     partial class init
     {
         /// <inheritdoc />

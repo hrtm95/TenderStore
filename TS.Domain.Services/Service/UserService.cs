@@ -36,10 +36,8 @@ namespace TS.Domain.Services.Service
         public async Task<List<User>> GetAll(CancellationToken cancellationToken)
         => await _userRepository.GetAll(cancellationToken);
 
-        public Task GetBy(int Id, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<User> GetBy(int Id, CancellationToken cancellationToken)
+        => await _userRepository.GetBy(Id, cancellationToken);
 
         public async Task Update(UserDto userDto, CancellationToken cancellationToken)
         {

@@ -115,9 +115,10 @@ namespace TS.Infrastructures.DB.Repo.Ef
             return records;
         }
 
-        public Task GetBy(int Id, CancellationToken cancellationToken)
+        public async Task<User> GetBy(int Id, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var User = await _db.Users.Where(x => x.Id == Id).FirstOrDefaultAsync(cancellationToken);
+            return User;
         }
 
         public async Task Update(UserDto userDto, CancellationToken cancellationToken)

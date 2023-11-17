@@ -1,4 +1,56 @@
-﻿@page
+﻿@page "/Admin/SellersList"
 @model TS.Endpoints.UI.Areas.Admin.Pages.SellerAdmin.SellersListModel
 @{
 }
+
+<div class="row">
+    <div class="col-12">
+
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">لیست  غرفه ها</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div class="table-responsive">
+                    <table id="example5" class="table table-bordered table-striped"
+                           style="width:100%">
+                        <thead>
+
+                            <tr>
+                                <th>نام فروشنده</th>
+                                <th>فعالیت</th>
+                                <th>مدال</th>
+                                <th>عملیات</th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.sellers)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.SellerName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.IsActive)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Medal)
+                                    </td>d>
+                                    <td>
+                                        <a asp-page-handler="Edit" asp-page="EditUser" asp-route-id="@item.Id">Edit</a>
+                                    </td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    </div>
+</div>
