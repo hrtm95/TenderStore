@@ -73,7 +73,7 @@ $(function () {
     //---------------Form inputs
     var table = $('#example6').DataTable();
 
-    $('button').click(function () {
+    $('button1').click(function () {
         var data = table.$('input, select').serialize();
         alert(
             "داده ها زیر به سرور شما ارسال می شود : \n\n" +

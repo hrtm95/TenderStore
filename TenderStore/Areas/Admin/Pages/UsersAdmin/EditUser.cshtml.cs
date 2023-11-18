@@ -9,7 +9,6 @@ using TS.Domain.Core.Entities;
 
 namespace TS.Endpoints.UI.Areas.Admin.Pages.UsersAdmin
 {
-    [Authorize("Admin")]
     public class EditUserModel : PageModel
     {
         private readonly IUserApplicationService _UserAppService;
@@ -27,12 +26,34 @@ namespace TS.Endpoints.UI.Areas.Admin.Pages.UsersAdmin
         public async Task<IActionResult> OnGet(int Id, CancellationToken cancellationToken)
         {
             user = await _UserAppService.GetBy(Id, cancellationToken);
-            var userEmail = user.Email;
-            var UserId = await _UserAppService.GetByEmail(userEmail, cancellationToken);
-            var Role = _signInManager.UserManager.GetRolesAsync(UserId).Result;
-            var RoleName = Role.SingleOrDefault();
+            //var userEmail = user.Email;
+            //var UserId = await _UserAppService.GetByEmail(userEmail, cancellationToken);
+            //var Role = _signInManager.UserManager.GetRolesAsync(UserId).Result;
+            //var RoleName = Role.SingleOrDefault();
 
             return Page();
+        }
+
+        public async Task<IActionResult> OnPostUpdate(UserDto model, CancellationToken cancellationToken)
+        {
+            if (ModelState.IsValid)
+            {
+
+                await _UserAppService.Update(model, cancellationToken);
+
+                try
+                {
+                    return LocalRedirect("/Admin");
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw;
+                }
+
+
+            }
+            return default;
         }
     }
 }
