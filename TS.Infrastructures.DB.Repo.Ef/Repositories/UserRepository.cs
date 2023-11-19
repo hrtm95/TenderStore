@@ -123,10 +123,42 @@ namespace TS.Infrastructures.DB.Repo.Ef
 
         public async Task Update(UserDto userDto, CancellationToken cancellationToken)
         {
-            var record = await _mapper.ProjectTo<User>(_db.Set<User>())
-                 .Where(x => x.Id == userDto.Id).FirstOrDefaultAsync();
-            _mapper.Map(userDto, record);
-            await _db.SaveChangesAsync(cancellationToken);
+            //try
+            //{
+            //    var record = await _mapper.ProjectTo<UserDto>(_db.Set<User>())
+            //     .Where(x => x.Id == userDto.Id).FirstOrDefaultAsync();
+            //    _mapper.Map(userDto, record);
+            //    await _db.SaveChangesAsync(cancellationToken);
+            //}
+            //catch (Exception ex)
+            //{
+
+            //}
+
+
+
+            var record = _mapper.Map<User>(userDto);
+            _db.Attach(record).State = EntityState.Modified;
+            try
+            {
+                await _db.SaveChangesAsync(cancellationToken);
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!UserExists(record.Id))
+                {
+                    return;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+        }
+        private bool UserExists(int id)
+        {
+            return (_db.Users?.Any(e => e.Id == id)).GetValueOrDefault();
         }
         public async Task<IdentityRole<int>> FindUser(int Id, CancellationToken cancellationToken)
         {

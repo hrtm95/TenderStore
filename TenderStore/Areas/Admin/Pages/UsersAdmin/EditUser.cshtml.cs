@@ -43,7 +43,7 @@ namespace TS.Endpoints.UI.Areas.Admin.Pages.UsersAdmin
 
                 try
                 {
-                    return LocalRedirect("/Admin");
+                    return LocalRedirect("/Admin/UsersList");
                 }
                 catch (Exception e)
                 {

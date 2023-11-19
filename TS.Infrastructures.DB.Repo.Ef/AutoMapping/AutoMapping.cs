@@ -23,6 +23,7 @@ namespace TS.Infrastructures.DB.Repo.Ef.AutoMapping
             CreateMap<FixedPriceDto, FixedPrice>().ReverseMap();
             CreateMap<MedalDto, Medal>().ReverseMap();
             CreateMap<OrderLineDto, OrderLine>().ReverseMap();
+            CreateMap<UserDto, User>().ReverseMap();
 
         }
     }
