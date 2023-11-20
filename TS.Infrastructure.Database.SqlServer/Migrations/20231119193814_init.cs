@@ -43,6 +43,20 @@ namespace TS.Infrastructure.Database.SqlServer.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "IdentityRole",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    NormalizedName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_IdentityRole", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Medal",
                 columns: table => new
                 {
@@ -737,6 +751,33 @@ namespace TS.Infrastructure.Database.SqlServer.Migrations
                     { 31, "یزد" }
                 });
 
+            migrationBuilder.InsertData(
+                table: "IdentityRole",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[,]
+                {
+                    { "46c68f7a-a098-4415-ac36-3d8978e7a2fa", null, "Costumer", "CUSTOMER" },
+                    { "5e8c70ea-abd2-44b0-9892-2d1f206d4520", null, "Admin", "ADMIN" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "UserRoles",
+                columns: new[] { "RoleId", "UserId" },
+                values: new object[,]
+                {
+                    { 1, 1 },
+                    { 2, 2 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "AccessFailedCount", "AddressId", "ConcurrencyStamp", "Email", "EmailConfirmed", "Family", "IsActive", "IsDeleted", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "PictureId", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[,]
+                {
+                    { 1, 0, null, "2c991d29-fd64-4ece-a510-d84e01f906cc", null, false, null, true, false, false, null, null, null, "ADMIN", "AQAAAAIAAYagAAAAEPMTKyJVPfS7fk01U/8BeDF9b1fjuzwNxc1dlvt5/wiWz+Eyw0p4sUwaXDtGTVUp+A==", null, false, null, null, false, "admin" },
+                    { 2, 0, null, "b0bc3c5b-d877-4ae9-9fc5-fe288d358237", null, false, null, true, false, false, null, null, null, "STAFF", "AQAAAAIAAYagAAAAENK9yw45S3AiSKRXB28bztaJp+K3tk1AdkSw+iPIZbSoVhA76n9eeub10qU5cnTOPg==", null, false, null, null, false, "hamid" }
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Address_CityId",
                 table: "Address",
@@ -935,6 +976,9 @@ namespace TS.Infrastructure.Database.SqlServer.Migrations
 
             migrationBuilder.DropTable(
                 name: "FixedPrice");
+
+            migrationBuilder.DropTable(
+                name: "IdentityRole");
 
             migrationBuilder.DropTable(
                 name: "OrderLine");

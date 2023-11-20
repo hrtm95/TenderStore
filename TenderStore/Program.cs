@@ -123,6 +123,8 @@ builder.Services.AddScoped<ISellerApplicationService, SellerApplicationService>(
 //builder.Services.AddScoped<ISoldGoodsApplicationService, SoldGoodsApplicationService>();
 builder.Services.AddScoped<IUserApplicationService, UserApplicationService>();
 
+
+
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("Admin",

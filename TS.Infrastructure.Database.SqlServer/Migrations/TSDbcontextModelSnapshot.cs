@@ -22,6 +22,39 @@ namespace TS.Infrastructure.Database.SqlServer.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NormalizedName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("IdentityRole");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "5e8c70ea-abd2-44b0-9892-2d1f206d4520",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = "46c68f7a-a098-4415-ac36-3d8978e7a2fa",
+                            Name = "Costumer",
+                            NormalizedName = "CUSTOMER"
+                        });
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<int>", b =>
                 {
                     b.Property<int>("Id")
@@ -118,6 +151,18 @@ namespace TS.Infrastructure.Database.SqlServer.Migrations
                     b.HasKey("UserId", "RoleId");
 
                     b.ToTable("UserRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = 1,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            UserId = 2,
+                            RoleId = 2
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
@@ -1035,6 +1080,38 @@ namespace TS.Infrastructure.Database.SqlServer.Migrations
                     b.HasIndex("PictureId");
 
                     b.ToTable("Users", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "2c991d29-fd64-4ece-a510-d84e01f906cc",
+                            EmailConfirmed = false,
+                            IsActive = true,
+                            IsDeleted = false,
+                            LockoutEnabled = false,
+                            NormalizedUserName = "ADMIN",
+                            PasswordHash = "AQAAAAIAAYagAAAAEPMTKyJVPfS7fk01U/8BeDF9b1fjuzwNxc1dlvt5/wiWz+Eyw0p4sUwaXDtGTVUp+A==",
+                            PhoneNumberConfirmed = false,
+                            TwoFactorEnabled = false,
+                            UserName = "admin"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "b0bc3c5b-d877-4ae9-9fc5-fe288d358237",
+                            EmailConfirmed = false,
+                            IsActive = true,
+                            IsDeleted = false,
+                            LockoutEnabled = false,
+                            NormalizedUserName = "STAFF",
+                            PasswordHash = "AQAAAAIAAYagAAAAENK9yw45S3AiSKRXB28bztaJp+K3tk1AdkSw+iPIZbSoVhA76n9eeub10qU5cnTOPg==",
+                            PhoneNumberConfirmed = false,
+                            TwoFactorEnabled = false,
+                            UserName = "hamid"
+                        });
                 });
 
             modelBuilder.Entity("TS.Domain.Core.Entities.Address", b =>

@@ -41,6 +41,7 @@ namespace TS.Infrastructure.Database.SqlServer.Common
             builder.Entity<IdentityUserLogin<int>> ().HasKey(p => new { p.LoginProvider, p.ProviderKey });
             builder.Entity<IdentityUserRole<int>>().HasKey(p => new { p.UserId, p.RoleId });
             builder.Entity<IdentityUserToken<int>>().HasKey(p => new { p.UserId, p.LoginProvider });
+            builder.UserAndRoleSeed();
         }
     }
 }
